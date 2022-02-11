@@ -1,3 +1,4 @@
+import React from "react";
 import { DraggableProvided } from "react-beautiful-dnd";
 import styled from "styled-components";
 
@@ -27,4 +28,4 @@ const CardView = ({ provided, item }: ICardViewProps) => {
   );
 };
 
-export default CardView;
+export default React.memo(CardView);
