@@ -1,9 +1,21 @@
-import { Draggable, DroppableProvided } from "react-beautiful-dnd";
+import {
+  Draggable,
+  DroppableProvided,
+  DroppableStateSnapshot,
+} from "react-beautiful-dnd";
 import styled from "styled-components";
 import CardView from "./CardView";
 
-const Container = styled.ul`
-  background-color: whitesmoke;
+const Container = styled.ul<{
+  draggingFromThisWith: boolean;
+  draggingOverWith: boolean;
+}>`
+  background-color: ${(props) =>
+    props.draggingFromThisWith
+      ? "#ff7979"
+      : props.draggingOverWith
+      ? "#f6e58d"
+      : "#c7ecee"};
   display: flex;
   flex-direction: column;
   grid-gap: 10px;
@@ -14,15 +26,21 @@ const Container = styled.ul`
 
 interface IBoardView {
   provided: DroppableProvided;
+  snapshot: DroppableStateSnapshot;
   items: string[];
 }
 
 /**
  * ### Card's board view.
  */
-const BoardView = ({ provided, items }: IBoardView) => {
+const BoardView = ({ provided, snapshot, items }: IBoardView) => {
   return (
-    <Container ref={provided.innerRef} {...provided.droppableProps}>
+    <Container
+      ref={provided.innerRef}
+      {...provided.droppableProps}
+      draggingFromThisWith={Boolean(snapshot.draggingFromThisWith)}
+      draggingOverWith={Boolean(snapshot.draggingOverWith)}
+    >
       {items.map((item, index) => (
         <Draggable key={item} draggableId={item} index={index}>
           {(provided) => (

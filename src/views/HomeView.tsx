@@ -10,7 +10,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   grid-gap: 10px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #686de0;
 `;
 
 const HomeView = () => {
@@ -51,11 +51,12 @@ const HomeView = () => {
         {Object.keys(items).map((boardId, index) => (
           // Declared droppable area.
           <Droppable key={index} droppableId={boardId}>
-            {(provided) => (
+            {(provided, snapshot) => (
               // Board View.
               <BoardView
                 key={index}
                 provided={provided}
+                snapshot={snapshot}
                 items={items[boardId]}
               />
             )}
