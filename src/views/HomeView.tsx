@@ -6,11 +6,26 @@ import BoardView from "../components/BoardView";
 
 const Container = styled.div`
   height: 100vh;
+  background-color: #686de0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Header = styled.header`
+  margin-bottom: 50px;
+
+  h1 {
+    color: white;
+  }
+`;
+
+const BoardContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   grid-gap: 10px;
-  background-color: #686de0;
 `;
 
 const HomeView = () => {
@@ -45,24 +60,29 @@ const HomeView = () => {
 
   return (
     <Container>
-      {/* Drag and Drop context */}
-      <DragDropContext onDragEnd={onDragEnd}>
-        {/* All item objects looping */}
-        {Object.keys(items).map((boardId, index) => (
-          // Declared droppable area.
-          <Droppable key={index} droppableId={boardId}>
-            {(provided, snapshot) => (
-              // Board View.
-              <BoardView
-                key={index}
-                provided={provided}
-                snapshot={snapshot}
-                items={items[boardId]}
-              />
-            )}
-          </Droppable>
-        ))}
-      </DragDropContext>
+      <Header>
+        <h1>Drag and Drop</h1>
+      </Header>
+      <BoardContainer>
+        {/* Drag and Drop context */}
+        <DragDropContext onDragEnd={onDragEnd}>
+          {/* All item objects looping */}
+          {Object.keys(items).map((boardId, index) => (
+            // Declared droppable area.
+            <Droppable key={index} droppableId={boardId}>
+              {(provided, snapshot) => (
+                // Board View.
+                <BoardView
+                  key={index}
+                  provided={provided}
+                  snapshot={snapshot}
+                  items={items[boardId]}
+                />
+              )}
+            </Droppable>
+          ))}
+        </DragDropContext>
+      </BoardContainer>
     </Container>
   );
 };

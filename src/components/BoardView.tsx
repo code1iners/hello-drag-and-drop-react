@@ -22,6 +22,7 @@ const Container = styled.ul<{
   padding: 10px;
   border-radius: 5px;
   min-width: 250px;
+  min-height: 300px;
 `;
 
 interface IBoardView {
