@@ -2,15 +2,17 @@
 
 This is a simple drag and drop test react app.
 
-## How to test
+[Go Check It Out!](https://code1iners.github.io/hello-drag-and-drop-react/)
 
-### Install dependencies.
+### How to test
+
+#### Install dependencies.
 
 ```
 npm i
 ```
 
-### Start app.
+#### Start app.
 
 ```
 npm start
